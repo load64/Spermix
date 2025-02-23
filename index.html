@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spermix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            color: white;
+            overflow-y: scroll;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Шапка */
+        header {
+            background-color: #000000;
+            padding: 15px 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        header a {
+            color: #ff99cc;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 0 0 5px #ff99cc, 0 0 10px #ff99cc;
+        }
+
+        header a:hover {
+            text-decoration: underline;
+        }
+
+        /* Главный контент */
+        .main-content {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .main-content img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.3);
+        }
+
+        .main-content h1 {
+            font-size: 70px;
+            color: white;
+            margin-bottom: 20px;
+            position: absolute;
+            left: 50px;
+            top: 30%;
+            text-align: left;
+        }
+
+        .main-content h1 span {
+            color: #ff99cc;
+            text-shadow: 0 0 5px #ff99cc, 0 0 10px #ff99cc, 0 0 15px #ff99cc;
+        }
+
+        .main-content p {
+            font-size: 30px;
+            color: #bbb;
+            position: absolute;
+            left: 50px;
+            bottom: 50px;
+            text-align: left;
+        }
+
+        /* Блоки с плюсами */
+        .plus-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000000;
+            padding: 0 50px; /* Увеличиваем отступы по бокам */
+        }
+
+        .plus-section .text {
+            width: 35%; /* Уменьшаем ширину текста, чтобы слайдер был больше */
+            padding: 20px;
+            color: white;
+            font-size: 25px;
+            text-align: left;
+        }
+
+        .plus-section .text h2 {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+		.plus-section h2 span {
+			color: #ff99cc;
+            text-shadow: 0 0 5px #ff99cc, 0 0 10px #ff99cc, 0 0 15px #ff99cc;
+        }
+
+        /* Слайдер */
+        .slider {
+            position: relative;
+            width: 60%; /* Увеличиваем ширину */
+            height: 90%; /* Увеличиваем высоту */
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .slider::before, .slider::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 15%; /* Ширина затемнения по краям */
+            z-index: 2;
+        }
+
+        .slider::before {
+            left: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+        }
+
+        .slider::after {
+            right: 0;
+            background: linear-gradient(to left, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+        }
+
+        .slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slider img.active {
+            opacity: 1;
+        }
+
+        /* Стили для кнопки */
+        .download-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #ff99cc;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .download-button:hover {
+            background-color: #ff66b2; /* Меняем цвет при наведении */
+            transform: scale(1.1); /* Увеличиваем кнопку */
+        }
+
+        .download-button:active {
+            transform: scale(1); /* Возвращаем исходный размер кнопки при клике */
+        }
+
+        /* Подвал */
+        footer {
+            background-color: #000000;
+            padding: 20px 0;
+            text-align: center;
+            color: #999;
+        }
+
+        footer a {
+            color: #ff99cc;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#">Главная</a>
+    <a href="#">Скачать</a>
+    <a href="#">Поддержка</a>
+</header>
+
+<div class="main-content">
+    <img src="https://i.imgur.com/6rnuzIc.png" alt="Скриншот чита">
+    <h1><span>Spermix</span> - Приватный чит</h1>
+    <p>Лучший опыт, лучший чит, лучшее игровое будущее.</p>
+</div>
+
+<!-- Первый плюс блок с картинками и слайдером -->
+<div class="plus-section">
+    <div class="text">
+        <h2><span>Безопасность</span></h2>
+        <p>Наш чит был проверен огромной командой (3 человека), за период игры не было зафиксировано ни одно VAC-бана.</p>
+    </div>
+    <div class="slider" id="slider1">
+        <img src="https://i.imgur.com/ZSxaqIk.png" alt="Плюс 1 - картинка 1" class="active">
+        <img src="https://i.imgur.com/6rnuzIc.png" alt="Плюс 1 - картинка 2">
+    </div>
+</div>
+
+<!-- Второй плюс блок с надписью и кнопкой -->
+<div class="plus-section">
+    <div class="text">
+        <h2><span>Spermix BETA</span></h2>
+        <p>✅ Вы можете опробовать Spermix BETA уже сейчас.</p><p>В случае возникновения багов/ошибок, терпите.</p>
+        <a href="#" class="download-button">Скачать Бету</a>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Spermix | <a>Ваши данные не собираются</a></p>
+</footer>
+
+<script>
+    // Слайдер для первого блока с картинками
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('#slider1 img');
+
+    function changeSlide() {
+        // Скрываем текущий слайд
+        slides[currentSlide].classList.remove('active');
+
+        // Переходим к следующему слайду
+        currentSlide = (currentSlide + 1) % slides.length;
+
+        // Показываем новый слайд
+        slides[currentSlide].classList.add('active');
+    }
+
+    // Инициализация: показываем первый слайд
+    slides[currentSlide].classList.add('active');
+
+    // Запускаем слайдер
+    setInterval(changeSlide, 3000); // Изменение картинок каждые 3 секунды
+</script>
+
+</body>
+</html>
